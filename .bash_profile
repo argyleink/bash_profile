@@ -17,6 +17,11 @@ parse_git_branch() {
    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
 
+# auto ls after cd'ing
+cd () {
+  builtin cd $@ && ls
+}
+
 # Rename Terminal Window - Usage: wn 'window name'
 function wn {
   printf "\e]2;$1\a"
