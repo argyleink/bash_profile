@@ -7,14 +7,19 @@ NAME="atom"
 export CLICOLOR=1
 export LSCOLORS=ExFxBxDxCxegedabagacad
 
+# personal
 alias ls='ls -GFh'
 alias please='sudo !!'
 alias serve='python -m SimpleHTTPServer'
-alias hack='subl .'
+alias servehot="live-server --ignorePattern='.git/*'"
+alias hack='open -a "Sublime Text"'
+alias k8s='kubectl'
+alias reload='. ~/.bash_profile'
+alias npmplease='sudo chown -R $(whoami) $(npm config get prefix)/{lib/node_modules,bin}'
 
 # Git branch in prompt.
 parse_git_branch() {
-   git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+   git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ \1/'
 }
 
 # auto ls after cd'ing
@@ -33,7 +38,7 @@ function tn {
 }
 
 # cl icon with icon, folder, and git branch if there
-export PS1="💀  \[\033[01;32m\]\W\[\033[00m\]\$(parse_git_branch)\[\033[00m\] "
+export PS1="\[\033[01;32m\]\W\[\033[00m\]\$(parse_git_branch)\[\033[00m\] 💀 "
 
 # paths
 export PATH=/usr/local/bin:$PATH
